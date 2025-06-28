@@ -1,6 +1,7 @@
 {
-  "name": "Sites of Donna Fontenot",
-  "slug": "sites-of-donna-fontenot",
+  "title": "Sites of Donna Fontenot",
+  "slug": "donna-sites",
+  "color": "#f472b6",
   "sites": [
     { "title": "Donna Fontenot", "url": "https://donnafontenot.com" },
     { "title": "The Grave Blogger", "url": "https://thegraveblogger.com" },
