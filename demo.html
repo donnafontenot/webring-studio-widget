@@ -3,20 +3,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Webring Widget Demo</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="webring-embed.js" defer></script>
 </head>
 <body>
   <h2>Compact</h2>
-  <div id="compact-widget"></div>
+  <div data-webring-json="ring.json" data-webring-style="compact"></div>
 
   <h2>Card</h2>
-  <div id="card-widget"></div>
+  <div data-webring-json="ring.json" data-webring-style="card"></div>
 
   <h2>Minimal</h2>
-  <div id="minimal-widget"></div>
-
-  <script src="webring.js"></script>
+  <div data-webring-json="ring.json" data-webring-style="minimal"></div>
 </body>
 </html>
+
