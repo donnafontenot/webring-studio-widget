@@ -1,74 +1,105 @@
-.webring-container {
+body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  background: #fafafa;
+}
+
+.webring-compact {
+  background: var(--ring-color);
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: inline-block;
+  text-align: center;
   font-family: sans-serif;
+  color: white;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.webring-compact .webring-title {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.webring-compact .webring-link {
+  color: white;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.webring-card {
   border: 2px solid var(--ring-color);
-  border-radius: 12px;
-  padding: 1em;
-  margin-bottom: 2em;
-  max-width: 600px;
+  border-radius: 10px;
+  padding: 12px;
+  width: 220px;
+  font-family: sans-serif;
   background: white;
+}
+
+.webring-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.webring-avatar {
+  width: 30px;
+  height: 30px;
+  background: var(--ring-color);
+  border-radius: 50%;
 }
 
 .webring-title {
   font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
-  text-align: center;
-}
-
-.webring-links {
-  text-align: center;
-  margin-top: 1em;
-}
-
-.webring-links a {
-  margin: 0 0.5em;
-  text-decoration: none;
-  color: var(--ring-color);
-  font-weight: bold;
-}
-
-/* Card: chunkier and more like a real module */
-.webring-style-card {
-  background-color: var(--ring-color);
-  color: white;
-  padding: 1.5em;
-  border-radius: 12px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.webring-style-card .webring-links a {
-  color: white;
-}
-
-/* Minimal: airy but subdued */
-.webring-style-minimal {
-  background: none;
-  border: 1px solid var(--ring-color);
-  padding: 1em;
-  width: 260px;
+  font-size: 14px;
   color: black;
-  text-align: center;
 }
 
-/* Compact: lean and minimal */
-.webring-style-compact {
-  display: inline-block;
-  font-size: 0.85em;
-  padding: 0.5em 0.75em;
-  border: 1px solid var(--ring-color);
-  max-width: 220px;
-  text-align: center;
+.webring-subtext {
+  font-size: 12px;
+  color: #666;
 }
 
-.webring-nav {
-  text-align: center;
-  margin-top: 1em;
+.webring-card-buttons {
+  display: flex;
+  gap: 8px;
 }
 
-.webring-nav a {
-  margin: 0 1em;
+.webring-btn {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 13px;
+  border-radius: 5px;
   text-decoration: none;
+}
+
+.webring-btn.view {
+  background: var(--ring-color);
+  color: white;
+}
+
+.webring-btn.join {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.webring-minimal {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.webring-pill {
+  background: var(--ring-color);
+  color: white;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
   font-weight: bold;
 }
