@@ -1,94 +1,52 @@
-(function() {
-  const widgets = document.querySelectorAll('[data-webring-json]');
-  widgets.forEach(widgetDiv => {
-    const jsonPath = widgetDiv.getAttribute('data-webring-json');
-    const style = widgetDiv.getAttribute('data-webring-style') || 'compact';
-    const color = widgetDiv.getAttribute('data-webring-color') || '#6c4eb6';
-    const currentUrl = widgetDiv.getAttribute('data-webring-current');
+document.addEventListener("DOMContentLoaded", function () {
+  const widgets = document.querySelectorAll("[data-webring-json]");
 
-    fetch(jsonPath)
-      .then(res => res.json())
-      .then(data => {
-        if (!data.sites || !Array.isArray(data.sites)) return;
+  widgets.forEach(async (widget) => {
+    const style = widget.getAttribute("data-webring-style") || "compact";
+    const color = widget.getAttribute("data-webring-color") || "#ccc";
+    const ringPath = widget.getAttribute("data-webring-json") || "ring.json";
 
-        let container = document.createElement('div');
-        container.className = `webring-widget webring-${style}`;
-        container.style.border = `2px solid ${color}`;
+    try {
+      const res = await fetch(ringPath);
+      const ring = await res.json();
+      const sites = ring.sites || [];
+      const name = ring.name || "Webring";
 
-        let loopNav = null;
-        if (currentUrl) {
-          const index = data.sites.findIndex(site => site.url === currentUrl);
-          if (index !== -1) {
-            const prev = data.sites[(index - 1 + data.sites.length) % data.sites.length];
-            const next = data.sites[(index + 1) % data.sites.length];
+      let currentIndex = sites.findIndex(site => location.hostname.includes(new URL(site.url).hostname));
+      if (currentIndex === -1) currentIndex = 0;
 
-            loopNav = document.createElement('div');
-            loopNav.className = 'webring-loop';
+      const prev = sites[(currentIndex - 1 + sites.length) % sites.length];
+      const next = sites[(currentIndex + 1) % sites.length];
 
-            const prevLink = document.createElement('a');
-            prevLink.href = prev.url;
-            prevLink.textContent = '← Previous';
-            prevLink.style.marginRight = '1em';
+      const container = document.createElement("div");
+      container.className = `webring-widget ${style}`;
+      container.style.borderColor = color;
 
-            const nextLink = document.createElement('a');
-            nextLink.href = next.url;
-            nextLink.textContent = 'Next →';
+      if (style === "card" || style === "compact") {
+        container.innerHTML = `
+          <div class="ring-name">${name}</div>
+          <div class="ring-count">${sites.length} member${sites.length !== 1 ? "s" : ""}</div>
+          <div class="ring-links">
+            <a href="${ringPath}" target="_blank">View</a>${style === "card" ? '<a href="#">Join</a>' : ""}
+          </div>
+          <div class="ring-nav">
+            ← <a href="${prev.url}">Previous</a>
+            <a href="${next.url}">Next</a> →
+          </div>
+        `;
+      } else if (style === "minimal") {
+        container.innerHTML = `
+          <div class="ring-name">${name} (${sites.length})</div>
+          <div class="ring-nav">
+            ← <a href="${prev.url}">Previous</a>
+            <a href="${next.url}">Next</a> →
+          </div>
+        `;
+      }
 
-            loopNav.appendChild(prevLink);
-            loopNav.appendChild(nextLink);
-          }
-        }
-
-        if (style === 'compact') {
-          const title = document.createElement('div');
-          title.textContent = 'Webring';
-          title.style.fontWeight = 'bold';
-
-          const count = document.createElement('div');
-          count.textContent = `${data.sites.length} members`;
-
-          const viewLink = document.createElement('a');
-          viewLink.href = '#';
-          viewLink.textContent = 'View Webring';
-          viewLink.style.display = 'block';
-          viewLink.style.marginTop = '0.5em';
-
-          container.appendChild(title);
-          container.appendChild(count);
-          container.appendChild(viewLink);
-          if (loopNav) container.appendChild(loopNav);
-
-        } else if (style === 'card') {
-          const title = document.createElement('h3');
-          title.textContent = 'Webring';
-          const desc = document.createElement('p');
-          desc.textContent = `${data.sites.length} members`;
-
-          const btns = document.createElement('div');
-          btns.className = 'buttons';
-          const viewBtn = document.createElement('a');
-          viewBtn.href = '#';
-          viewBtn.textContent = 'View';
-          const joinBtn = document.createElement('a');
-          joinBtn.href = '#';
-          joinBtn.textContent = 'Join';
-          btns.appendChild(viewBtn);
-          btns.appendChild(joinBtn);
-
-          container.appendChild(title);
-          container.appendChild(desc);
-          container.appendChild(btns);
-          if (loopNav) container.appendChild(loopNav);
-
-        } else if (style === 'minimal') {
-          const link = document.createElement('a');
-          link.href = '#';
-          link.textContent = `Webring (${data.sites.length})`;
-          container.appendChild(link);
-          if (loopNav) container.appendChild(loopNav);
-        }
-
-        widgetDiv.appendChild(container);
-      });
+      widget.appendChild(container);
+    } catch (error) {
+      console.error("Webring error:", error);
+    }
   });
-})();
+});

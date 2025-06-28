@@ -2,52 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Webring Widget Demo</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="webring-embed.js" async></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="webring-embed.js" defer></script>
 </head>
 <body>
-<style>
-  .widget-demo-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 3rem;
-  }
+  <h2>Compact</h2>
+  <div data-webring-json="ring.json" data-webring-style="compact" data-webring-color="#6c4eb6"></div>
 
-  .widget-demo-section h2 {
-    margin-bottom: 1rem;
-  }
-</style>
+  <h2>Card</h2>
+  <div data-webring-json="ring.json" data-webring-style="card" data-webring-color="#d45b94"></div>
 
-
-  <div class="widget-demo-section"><h2>Compact</h2>
-  <div 
-    data-webring-json="ring.json" 
-    data-webring-style="compact" 
-    data-webring-color="#6c4eb6"
-    data-webring-current="https://donnafontenot.com">
-  </div>
-
-  </div>
-<div class="widget-demo-section"><h2>Card</h2>
-  <div 
-    data-webring-json="ring.json" 
-    data-webring-style="card" 
-    data-webring-color="#ff6b9d"
-    data-webring-current="https://donnafontenot.com">
-  </div>
-
-  </div>
-<div class="widget-demo-section"><h2>Minimal</h2>
-  <div 
-    data-webring-json="ring.json" 
-    data-webring-style="minimal" 
-    data-webring-color="#00b894"
-    data-webring-current="https://donnafontenot.com">
-  </div>
-
-</div>
+  <h2>Minimal</h2>
+  <div data-webring-json="ring.json" data-webring-style="minimal" data-webring-color="#14b8a6"></div>
 </body>
 </html>
