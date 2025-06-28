@@ -10,27 +10,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const next = el.dataset.next || '#';
     const view = el.dataset.view || '#';
 
-    // Inject minimal styling if using "card"
     if (style === 'card') {
+      // Apply layout & styling
+      el.classList.add('webring-card');
       el.style.border = `2px solid ${color}`;
-      el.style.borderRadius = '12px';
-      el.style.padding = '16px';
-      el.style.maxWidth = '320px';
+      el.style.borderRadius = '16px';
+      el.style.padding = '20px';
+      el.style.maxWidth = '340px';
       el.style.background = '#fff';
-      el.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 2px 8px';
-      el.style.margin = '20px auto';
+      el.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+      el.style.margin = '30px auto';
       el.style.fontFamily = 'system-ui, sans-serif';
+      el.style.textAlign = 'center';
       el.style.setProperty('--webring-color', color);
 
+      // Inject content
       el.innerHTML = `
-        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-          <a href="${prev}" style="text-decoration:none; color:${color}; font-weight:bold;">⟵ Prev</a>
-          <a href="${view}" style="text-decoration:none; color:${color}; font-weight:bold;">🌐 View Ring</a>
-          <a href="${next}" style="text-decoration:none; color:${color}; font-weight:bold;">Next ⟶</a>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 24px; margin-top: 6px;">
+          <a href="${prev}" style="text-decoration:none; color:${color}; font-weight:bold; font-size: 1.1rem;">⟵ Prev</a>
+          <a href="${view}" style="text-decoration:none; color:${color}; font-weight:bold; font-size: 1.1rem;">🌐 View Ring</a>
+          <a href="${next}" style="text-decoration:none; color:${color}; font-weight:bold; font-size: 1.1rem;">Next ⟶</a>
         </div>
       `;
     } else {
-      // Basic fallback style — update later as needed
+      // Basic fallback if no style="card"
       el.innerHTML = `
         <p><a href="${prev}">Prev</a> | <a href="${view}">View Ring</a> | <a href="${next}">Next</a></p>
       `;
