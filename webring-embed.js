@@ -4,6 +4,7 @@
     const jsonPath = widgetDiv.getAttribute('data-webring-json');
     const style = widgetDiv.getAttribute('data-webring-style') || 'compact';
     const color = widgetDiv.getAttribute('data-webring-color') || '#6c4eb6';
+    const currentUrl = widgetDiv.getAttribute('data-webring-current');
 
     fetch(jsonPath)
       .then(res => res.json())
@@ -53,6 +54,29 @@
           link.href = '#';
           link.textContent = `Webring (${data.sites.length})`;
           container.appendChild(link);
+
+        } else if (style === 'loop' && currentUrl) {
+          const index = data.sites.findIndex(site => site.url === currentUrl);
+          if (index !== -1) {
+            const prev = data.sites[(index - 1 + data.sites.length) % data.sites.length];
+            const next = data.sites[(index + 1) % data.sites.length];
+
+            const nav = document.createElement('div');
+            nav.className = 'webring-loop-nav';
+
+            const prevLink = document.createElement('a');
+            prevLink.href = prev.url;
+            prevLink.textContent = '← Previous';
+            prevLink.style.marginRight = '1em';
+
+            const nextLink = document.createElement('a');
+            nextLink.href = next.url;
+            nextLink.textContent = 'Next →';
+
+            nav.appendChild(prevLink);
+            nav.appendChild(nextLink);
+            container.appendChild(nav);
+          }
         }
 
         widgetDiv.appendChild(container);
