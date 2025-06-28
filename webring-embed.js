@@ -15,6 +15,31 @@
         container.className = `webring-widget webring-${style}`;
         container.style.border = `2px solid ${color}`;
 
+        let loopNav = null;
+        if (currentUrl) {
+          const index = data.sites.findIndex(site => site.url === currentUrl);
+          if (index !== -1) {
+            const prev = data.sites[(index - 1 + data.sites.length) % data.sites.length];
+            const next = data.sites[(index + 1) % data.sites.length];
+
+            loopNav = document.createElement('div');
+            loopNav.className = 'webring-loop-nav';
+            loopNav.style.marginTop = '0.75em';
+
+            const prevLink = document.createElement('a');
+            prevLink.href = prev.url;
+            prevLink.textContent = '← Previous';
+            prevLink.style.marginRight = '1em';
+
+            const nextLink = document.createElement('a');
+            nextLink.href = next.url;
+            nextLink.textContent = 'Next →';
+
+            loopNav.appendChild(prevLink);
+            loopNav.appendChild(nextLink);
+          }
+        }
+
         if (style === 'compact') {
           const list = document.createElement('ul');
           data.sites.forEach(site => {
@@ -27,6 +52,7 @@
             list.appendChild(item);
           });
           container.appendChild(list);
+          if (loopNav) container.appendChild(loopNav);
 
         } else if (style === 'card') {
           const title = document.createElement('h3');
@@ -48,35 +74,14 @@
           container.appendChild(title);
           container.appendChild(desc);
           container.appendChild(btns);
+          if (loopNav) container.appendChild(loopNav);
 
         } else if (style === 'minimal') {
           const link = document.createElement('a');
           link.href = '#';
           link.textContent = `Webring (${data.sites.length})`;
           container.appendChild(link);
-
-        } else if (style === 'loop' && currentUrl) {
-          const index = data.sites.findIndex(site => site.url === currentUrl);
-          if (index !== -1) {
-            const prev = data.sites[(index - 1 + data.sites.length) % data.sites.length];
-            const next = data.sites[(index + 1) % data.sites.length];
-
-            const nav = document.createElement('div');
-            nav.className = 'webring-loop-nav';
-
-            const prevLink = document.createElement('a');
-            prevLink.href = prev.url;
-            prevLink.textContent = '← Previous';
-            prevLink.style.marginRight = '1em';
-
-            const nextLink = document.createElement('a');
-            nextLink.href = next.url;
-            nextLink.textContent = 'Next →';
-
-            nav.appendChild(prevLink);
-            nav.appendChild(nextLink);
-            container.appendChild(nav);
-          }
+          if (loopNav) container.appendChild(loopNav);
         }
 
         widgetDiv.appendChild(container);
