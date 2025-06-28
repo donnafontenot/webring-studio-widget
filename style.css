@@ -1,50 +1,59 @@
-
-body {
+.webring-container {
   font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
+  border: 2px solid var(--ring-color);
+  border-radius: 12px;
+  padding: 1em;
+  margin-bottom: 2em;
+  max-width: 600px;
+  background: white;
 }
 
-h2 {
-  width: 100%;
-  text-align: left;
-  margin-top: 60px;
-  font-size: 20px;
-}
-
-.webring-widget {
-  padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
-  text-align: center;
-  min-width: 280px;
-}
-
-.webring-compact {
-  background-color: #f471b5;
-  color: white;
+.webring-title {
   font-weight: bold;
-}
-
-.webring-card {
-  border: 2px solid #f471b5;
-  color: #333;
-}
-
-.webring-minimal {
-  background-color: #f471b5;
-  color: white;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .webring-links {
-  margin-top: 8px;
+  text-align: center;
+  margin-top: 1em;
 }
 
 .webring-links a {
-  margin: 0 10px;
+  margin: 0 0.5em;
+  text-decoration: none;
+  color: var(--ring-color);
   font-weight: bold;
-  color: inherit;
-  text-decoration: underline;
+}
+
+.webring-style-card {
+  background-color: var(--ring-color);
+  color: white;
+  border: none;
+}
+
+.webring-style-card .webring-links a {
+  color: white;
+}
+
+.webring-style-minimal {
+  border-radius: 4px;
+  padding: 0.5em;
+}
+
+.webring-style-compact {
+  font-size: 0.9em;
+  padding: 0.5em;
+}
+
+.webring-nav {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.webring-nav a {
+  margin: 0 1em;
+  text-decoration: none;
+  font-weight: bold;
 }
