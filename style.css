@@ -52,3 +52,16 @@
 .webring-loop a {
   margin: 0 0.5em;
 }
+
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.widget-container {
+  max-width: 400px;
+  margin: 0 auto 4rem auto; /* centers each widget block and adds bottom spacing */
+  text-align: center;
+}
+
