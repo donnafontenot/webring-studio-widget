@@ -1,0 +1,12 @@
+.webring-nav {
+  font-family: sans-serif;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
+.webring-nav a {
+  text-decoration: none;
+  color: #650dd4;
+  font-weight: bold;
+}
