@@ -1,34 +1,50 @@
-.webring-widget {
-  border: 2px solid;
-  border-radius: 8px;
-  padding: 1em;
-  margin: 0 auto 2em auto;
-  text-align: center;
-  max-width: 300px;
+
+body {
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 }
 
-.ring-name {
+h2 {
+  width: 100%;
+  text-align: left;
+  margin-top: 60px;
+  font-size: 20px;
+}
+
+.webring-widget {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 280px;
+}
+
+.webring-compact {
+  background-color: #f471b5;
+  color: white;
   font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 0.25em;
 }
 
-.ring-count {
-  color: #444;
-  margin-bottom: 0.5em;
+.webring-card {
+  border: 2px solid #f471b5;
+  color: #333;
 }
 
-.ring-links a {
-  margin: 0 0.5em;
+.webring-minimal {
+  background-color: #f471b5;
+  color: white;
+}
+
+.webring-links {
+  margin-top: 8px;
+}
+
+.webring-links a {
+  margin: 0 10px;
   font-weight: bold;
-}
-
-.ring-nav {
-  margin-top: 0.75em;
-}
-
-.ring-nav a {
-  margin: 0 0.5em;
-  font-weight: bold;
+  color: inherit;
+  text-decoration: underline;
 }
