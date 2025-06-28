@@ -27,24 +27,39 @@
   font-weight: bold;
 }
 
+/* Card: chunkier and more like a real module */
 .webring-style-card {
   background-color: var(--ring-color);
   color: white;
-  border: none;
+  padding: 1.5em;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .webring-style-card .webring-links a {
   color: white;
 }
 
+/* Minimal: airy but subdued */
 .webring-style-minimal {
-  border-radius: 4px;
-  padding: 0.5em;
+  background: none;
+  border: 1px solid var(--ring-color);
+  padding: 1em;
+  width: 260px;
+  color: black;
+  text-align: center;
 }
 
+/* Compact: lean and minimal */
 .webring-style-compact {
-  font-size: 0.9em;
-  padding: 0.5em;
+  display: inline-block;
+  font-size: 0.85em;
+  padding: 0.5em 0.75em;
+  border: 1px solid var(--ring-color);
+  max-width: 220px;
+  text-align: center;
 }
 
 .webring-nav {
