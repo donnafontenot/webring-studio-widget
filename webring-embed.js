@@ -41,17 +41,22 @@
         }
 
         if (style === 'compact') {
-          const list = document.createElement('ul');
-          data.sites.forEach(site => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = site.url;
-            link.textContent = site.title;
-            link.target = '_blank';
-            item.appendChild(link);
-            list.appendChild(item);
-          });
-          container.appendChild(list);
+          const title = document.createElement('div');
+          title.textContent = 'Webring';
+          title.style.fontWeight = 'bold';
+
+          const count = document.createElement('div');
+          count.textContent = `${data.sites.length} members`;
+
+          const viewLink = document.createElement('a');
+          viewLink.href = '#';
+          viewLink.textContent = 'View Webring';
+          viewLink.style.display = 'block';
+          viewLink.style.marginTop = '0.5em';
+
+          container.appendChild(title);
+          container.appendChild(count);
+          container.appendChild(viewLink);
           if (loopNav) container.appendChild(loopNav);
 
         } else if (style === 'card') {
