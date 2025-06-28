@@ -1,0 +1,11 @@
+
+{
+  "name": "Sites of Donna Fontenot",
+  "slug": "donna-sites",
+  "color": "#f471b5",
+  "sites": [
+    { "title": "Donna Fontenot", "url": "https://donnafontenot.com" },
+    { "title": "The Grave Blogger", "url": "https://thegraveblogger.com" },
+    { "title": "Revenge Begins With Insanity", "url": "https://revengebeginswithinsanity.com" }
+  ]
+}
