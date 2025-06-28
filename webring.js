@@ -3,46 +3,36 @@ async function renderWebring(container, jsonPath, style) {
   const data = await res.json();
 
   const { name, slug, color, sites } = data;
-  const currentIndex = 0;
 
   const wrapper = document.createElement('div');
-  wrapper.className = `webring-container webring-style-${style}`;
   wrapper.style.setProperty('--ring-color', color || '#6c4eb6');
 
-  const title = document.createElement('div');
-  title.className = 'webring-title';
-  title.textContent = name || 'Webring';
-  wrapper.appendChild(title);
-
-  const nav = document.createElement('div');
-  nav.className = 'webring-nav';
-  const prev = document.createElement('a');
-  const next = document.createElement('a');
-
-  prev.href = sites[(currentIndex - 1 + sites.length) % sites.length].url;
-  prev.textContent = '← Previous';
-  next.href = sites[(currentIndex + 1) % sites.length].url;
-  next.textContent = 'Next →';
-
-  nav.appendChild(prev);
-  nav.appendChild(next);
-  wrapper.appendChild(nav);
-
-  if (style !== 'compact') {
-    const links = document.createElement('div');
-    links.className = 'webring-links';
-
-    const view = document.createElement('a');
-    view.href = `https://webringstudio.com/rings/${slug}`;
-    view.textContent = 'View Ring';
-
-    const join = document.createElement('a');
-    join.href = `https://webringstudio.com/rings/${slug}#join`;
-    join.textContent = 'Join Ring';
-
-    links.appendChild(view);
-    links.appendChild(join);
-    wrapper.appendChild(links);
+  if (style === 'compact') {
+    wrapper.className = 'webring-compact';
+    wrapper.innerHTML = `
+      <div class="webring-title">${name}</div>
+      <a href="https://webringstudio.com/rings/${slug}" class="webring-link">View Webring</a>
+    `;
+  } else if (style === 'card') {
+    wrapper.className = 'webring-card';
+    wrapper.innerHTML = `
+      <div class="webring-card-header">
+        <div class="webring-avatar"></div>
+        <div>
+          <div class="webring-title">${name}</div>
+          <div class="webring-subtext">${slug}</div>
+        </div>
+      </div>
+      <div class="webring-card-buttons">
+        <a href="https://webringstudio.com/rings/${slug}" class="webring-btn view">View</a>
+        <a href="https://webringstudio.com/rings/${slug}#join" class="webring-btn join">Join</a>
+      </div>
+    `;
+  } else if (style === 'minimal') {
+    wrapper.className = 'webring-minimal';
+    wrapper.innerHTML = `
+      <div class="webring-pill">🟣 ${name} (${sites.length})</div>
+    `;
   }
 
   container.appendChild(wrapper);
