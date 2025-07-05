@@ -1,0 +1,22 @@
+
+{
+  "ringName": "Example Webring",
+  "style": "minimal",
+  "sites": [
+    {
+      "name": "Alice's Blog",
+      "url": "https://alice.example.com",
+      "description": "Personal thoughts and tutorials"
+    },
+    {
+      "name": "Bob's Portfolio",
+      "url": "https://bob.example.com",
+      "description": "Creative design work"
+    },
+    {
+      "name": "Charlie's Code",
+      "url": "https://charlie.example.com",
+      "description": "Programming tutorials and tips"
+    }
+  ]
+}
